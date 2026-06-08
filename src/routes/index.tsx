@@ -313,7 +313,9 @@ const dict = {
     },
     footer: "Conçu au Maroc pour la planète.",
   },
-} as const;
+};
+
+type Dict = typeof dict.en;
 
 const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: typeof dict.en }>({
   lang: "en",
