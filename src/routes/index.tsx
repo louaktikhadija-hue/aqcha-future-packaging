@@ -21,7 +21,8 @@ import bagImg from "@/assets/product-bag.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import futureProductImg from "@/assets/product-future.jpg";
 import futureImg from "@/assets/future.jpg";
-import logoImg from "@/assets/logo.png";
+import logoAsset from "@/assets/logo.png.asset.json";
+const logoImg = logoAsset.url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
