@@ -21,6 +21,7 @@ import bagImg from "@/assets/product-bag.jpg";
 import boxImg from "@/assets/product-box.jpg";
 import futureProductImg from "@/assets/product-future.jpg";
 import futureImg from "@/assets/future.jpg";
+import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,7 +65,8 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
       <nav className="glass rounded-full px-2 py-2 flex items-center gap-1 text-[var(--cream)] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.35)]">
-        <a href="#top" className="pl-4 pr-6 font-display text-xl tracking-tight">
+        <a href="#top" className="pl-3 pr-5 flex items-center gap-2 font-display text-xl tracking-tight">
+          <img src={logoImg} alt="AQCHA" width={28} height={28} className="w-7 h-7 object-contain" />
           aqcha<span className="text-[var(--amber)]">.</span>
         </a>
         <div className="hidden md:flex items-center gap-1 text-sm">
@@ -129,10 +131,37 @@ function Hero() {
         style={{ opacity }}
         className="relative h-full container mx-auto px-6 flex flex-col justify-end pb-20 md:pb-28 max-w-7xl"
       >
+        {/* Brand lockup: logo + title + tagline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="self-start mb-10"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl glass grid place-items-center p-2.5">
+              <img
+                src={logoImg}
+                alt="AQCHA logo"
+                width={512}
+                height={512}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="display text-4xl md:text-5xl tracking-tight text-[var(--cream)]">
+              AQCHA<span className="text-[var(--amber)]">.</span>
+            </div>
+          </div>
+          <p className="mt-3 max-w-sm text-sm md:text-[0.95rem] text-[var(--cream)]/70 leading-relaxed">
+            A Moroccan climate-tech startup turning fruit & vegetable waste into
+            100% biodegradable, plastic-free packaging.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.25 }}
           className="inline-flex items-center gap-2 self-start glass rounded-full pl-2 pr-4 py-1.5 text-xs uppercase tracking-[0.18em] mb-8"
         >
           <span className="w-6 h-6 rounded-full bg-[var(--amber)] grid place-items-center">
