@@ -317,7 +317,7 @@ const dict = {
 
 type Dict = typeof dict.en;
 
-const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: typeof dict.en }>({
+const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: Dict }>({
   lang: "en",
   setLang: () => {},
   t: dict.en,
