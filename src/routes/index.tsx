@@ -941,6 +941,13 @@ function Impact() {
       className="relative bg-[var(--forest-deep)] text-[var(--cream)] py-28 md:py-40 overflow-hidden"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[var(--amber)]/10 blur-[120px] pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: taousTileBg, backgroundSize: "280px 280px", opacity: 0.06 }}
+      />
+      <TaousCorner className="absolute top-10 left-6 w-32 h-32 hidden md:block" color="var(--amber)" opacity={0.12} />
+      <TaousCorner className="absolute bottom-10 right-6 w-32 h-32 hidden md:block" flip color="var(--amber)" opacity={0.12} />
       <div className="container mx-auto px-6 max-w-7xl relative">
         <div className="grid md:grid-cols-12 gap-12 items-end mb-16">
           <div className="md:col-span-7">
