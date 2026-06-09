@@ -354,9 +354,13 @@ function LangToggle({ dark = true }: { dark?: boolean }) {
 }
 
 /* ============================================================
-   Moroccan motifs — Zellige + Taous (peacock-feather) inspirations
+   Moroccan motifs — Zellige + Tabsil Taous (Blue Peacock Plate)
+   Refined palette: deep blue #1B4D8C + gold #C9A24A
    All decorative; rendered at 3–8% opacity unless stated
 ============================================================ */
+const TAOUS_BLUE = "#1B4D8C";
+const TAOUS_GOLD = "#C9A24A";
+
 const zelligeBg =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%230C342C' stroke-width='1' opacity='0.18'><path d='M40 0 L80 40 L40 80 L0 40 Z'/><path d='M40 14 L66 40 L40 66 L14 40 Z'/><circle cx='40' cy='40' r='8'/><path d='M0 0 L20 20 M80 0 L60 20 M0 80 L20 60 M80 80 L60 60'/></g></svg>\")";
 
@@ -364,11 +368,19 @@ const zelligeBg =
 const taousTileBg =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%23FBE045' stroke-width='0.9' opacity='0.55'><circle cx='80' cy='80' r='42'/><circle cx='80' cy='80' r='24'/><circle cx='80' cy='80' r='8'/><path d='M80 12 C100 40 100 120 80 148 C60 120 60 40 80 12 Z'/><path d='M12 80 C40 60 120 60 148 80 C120 100 40 100 12 80 Z'/><path d='M32 32 C60 60 100 60 128 32 M32 128 C60 100 100 100 128 128'/></g></svg>\")";
 
+// Tabsil Taous tile motif (blue/gold) — used as faint watermark
+const taousBlueBg =
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><g fill='none' stroke='%231B4D8C' stroke-width='0.8'><circle cx='100' cy='100' r='60'/><circle cx='100' cy='100' r='38'/><circle cx='100' cy='100' r='16'/><path d='M100 20 L120 80 L180 100 L120 120 L100 180 L80 120 L20 100 L80 80 Z'/></g><g fill='none' stroke='%23C9A24A' stroke-width='0.6' opacity='0.8'><path d='M100 40 C 130 70 130 130 100 160 C 70 130 70 70 100 40 Z'/><path d='M40 100 C 70 70 130 70 160 100 C 130 130 70 130 40 100 Z'/><circle cx='100' cy='100' r='4'/></g></svg>\")";
+
+// Bordure Taous — repeatable horizontal border (used in footer)
+const taousBorderBg =
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='28' viewBox='0 0 60 28'><g fill='none' stroke='%23C9A24A' stroke-width='1'><path d='M0 14 L60 14' opacity='0.5'/><path d='M30 2 L42 14 L30 26 L18 14 Z'/><path d='M30 7 L37 14 L30 21 L23 14 Z' fill='%231B4D8C' fill-opacity='0.35'/><circle cx='30' cy='14' r='1.5' fill='%23C9A24A'/><path d='M0 14 L8 8 M0 14 L8 20 M60 14 L52 8 M60 14 L52 20'/></g></svg>\")";
+
 // Soft Taous corner ornament — used at section corners
 function TaousCorner({
   className = "",
   flip = false,
-  color = "var(--amber)",
+  color = TAOUS_GOLD,
   opacity = 0.18,
 }: {
   className?: string;
@@ -393,14 +405,65 @@ function TaousCorner({
         <circle cx="60" cy="36" r="2" />
         <circle cx="36" cy="60" r="2" />
       </g>
+      <g fill="none" stroke={TAOUS_BLUE} strokeWidth="0.7" opacity="0.7">
+        <path d="M8 60 C 8 32, 32 8, 60 8" />
+        <path d="M60 28 L66 34 L60 40 L54 34 Z" />
+      </g>
     </svg>
   );
 }
 
-// Moroccan-inspired divider — abstract peacock-feather row
+// Plume de Taous — peacock feather (decorative accent)
+function TaousFeather({ className = "", opacity = 0.16 }: { className?: string; opacity?: number }) {
+  return (
+    <svg aria-hidden viewBox="0 0 80 200" className={`pointer-events-none ${className}`} style={{ opacity }}>
+      <g fill="none" strokeLinecap="round">
+        <path d="M40 195 L40 80" stroke={TAOUS_GOLD} strokeWidth="1.2" />
+        <ellipse cx="40" cy="55" rx="28" ry="50" stroke={TAOUS_BLUE} strokeWidth="1.2" />
+        <ellipse cx="40" cy="55" rx="18" ry="34" stroke={TAOUS_GOLD} strokeWidth="0.9" />
+        <ellipse cx="40" cy="55" rx="10" ry="20" fill={TAOUS_BLUE} fillOpacity="0.35" stroke={TAOUS_BLUE} strokeWidth="0.6" />
+        <circle cx="40" cy="52" r="4" fill={TAOUS_GOLD} />
+        <g stroke={TAOUS_BLUE} strokeWidth="0.5" opacity="0.6">
+          {Array.from({ length: 18 }).map((_, i) => {
+            const y = 90 + i * 6;
+            const w = 14 - i * 0.5;
+            return <path key={i} d={`M40 ${y} Q${40 - w} ${y + 4} ${40 - w + 2} ${y + 8} M40 ${y} Q${40 + w} ${y + 4} ${40 + w - 2} ${y + 8}`} />;
+          })}
+        </g>
+      </g>
+    </svg>
+  );
+}
+
+// Étoile marocaine — 8-pointed star with optional inner icon
+function TaousStar({
+  className = "",
+  opacity = 0.9,
+  size = 80,
+  children,
+}: {
+  className?: string;
+  opacity?: number;
+  size?: number;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className={`relative inline-grid place-items-center ${className}`} style={{ width: size, height: size, opacity }} aria-hidden>
+      <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full">
+        <g fill="none" stroke={TAOUS_GOLD} strokeWidth="1.2" strokeLinejoin="round">
+          <path d="M50 4 L62 26 L86 14 L74 38 L96 50 L74 62 L86 86 L62 74 L50 96 L38 74 L14 86 L26 62 L4 50 L26 38 L14 14 L38 26 Z" />
+          <path d="M50 18 L58 32 L74 26 L66 42 L82 50 L66 58 L74 74 L58 68 L50 82 L42 68 L26 74 L34 58 L18 50 L34 42 L26 26 L42 32 Z" stroke={TAOUS_BLUE} strokeWidth="0.9" />
+        </g>
+      </svg>
+      <div className="relative z-10">{children}</div>
+    </div>
+  );
+}
+
+// Moroccan-inspired divider — refined Taous rosette with gold rails + side dots
 function MoroccanDivider({
-  color = "var(--forest-deep)",
-  opacity = 0.22,
+  color = TAOUS_GOLD,
+  opacity = 0.55,
   className = "",
 }: {
   color?: string;
@@ -408,17 +471,20 @@ function MoroccanDivider({
   className?: string;
 }) {
   return (
-    <div className={`flex items-center justify-center gap-3 ${className}`} aria-hidden>
-      <span className="h-px flex-1 max-w-[120px]" style={{ background: `linear-gradient(90deg, transparent, ${color})`, opacity }} />
-      <svg viewBox="0 0 80 24" className="w-24 h-6" style={{ opacity: opacity + 0.15 }}>
-        <g fill="none" stroke={color} strokeWidth="1">
-          <path d="M40 2 C 50 8, 50 16, 40 22 C 30 16, 30 8, 40 2 Z" />
-          <circle cx="40" cy="12" r="2" />
-          <path d="M10 12 C 16 6, 24 6, 30 12 C 24 18, 16 18, 10 12 Z" />
-          <path d="M70 12 C 64 6, 56 6, 50 12 C 56 18, 64 18, 70 12 Z" />
+    <div className={`flex items-center justify-center gap-4 ${className}`} aria-hidden style={{ opacity }}>
+      <span className="h-px flex-1 max-w-[160px]" style={{ background: `linear-gradient(90deg, transparent, ${color})` }} />
+      <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+      <svg viewBox="0 0 60 24" className="w-16 h-6">
+        <g fill="none" strokeLinejoin="round">
+          <path d="M30 2 L36 12 L30 22 L24 12 Z" stroke={color} strokeWidth="1.1" />
+          <path d="M30 6 L33 12 L30 18 L27 12 Z" fill={TAOUS_BLUE} fillOpacity="0.45" stroke={TAOUS_BLUE} strokeWidth="0.7" />
+          <circle cx="30" cy="12" r="1.4" fill={color} />
+          <circle cx="10" cy="12" r="1.4" fill={color} />
+          <circle cx="50" cy="12" r="1.4" fill={color} />
         </g>
       </svg>
-      <span className="h-px flex-1 max-w-[120px]" style={{ background: `linear-gradient(270deg, transparent, ${color})`, opacity }} />
+      <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+      <span className="h-px flex-1 max-w-[160px]" style={{ background: `linear-gradient(270deg, transparent, ${color})` }} />
     </div>
   );
 }
@@ -806,10 +872,21 @@ function Products() {
         aria-hidden
         className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--cream)] to-transparent pointer-events-none"
       />
+      {/* Faint Tabsil Taous watermark */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: taousBlueBg, backgroundSize: "400px 400px", opacity: 0.06 }}
+      />
+      {/* Plume de Taous corner accents */}
+      <TaousFeather className="absolute top-10 -right-2 w-28 h-72 hidden lg:block" opacity={0.14} />
+      <TaousFeather className="absolute bottom-10 -left-2 w-28 h-72 hidden lg:block -scale-x-100" opacity={0.14} />
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--cream)] to-transparent pointer-events-none"
       />
+
+
 
       <div className="relative container mx-auto px-6 max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-8 mb-16">
@@ -1146,24 +1223,25 @@ function Contact() {
 function Footer() {
   const { t } = useT();
   return (
-    <footer className="relative bg-[var(--forest-deep)] text-[var(--cream)]/70 py-12 overflow-hidden">
-      {/* Refined Moroccan-inspired top border */}
+    <footer className="relative bg-[var(--forest-deep)] text-[var(--cream)]/70 pt-12 pb-20 overflow-hidden">
+      {/* Top thin gold rail */}
       <div
         aria-hidden
-        className="absolute top-0 inset-x-0 h-1.5"
-        style={{
-          background:
-            "repeating-linear-gradient(90deg, var(--amber) 0 10px, var(--forest) 10px 20px, #C75B3C 20px 30px)",
-          opacity: 0.55,
-        }}
+        className="absolute top-0 inset-x-0 h-px"
+        style={{ background: `linear-gradient(90deg, transparent, ${TAOUS_GOLD}, transparent)`, opacity: 0.6 }}
       />
+      {/* Faint Taous watermark */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: zelligeBg, backgroundSize: "60px 60px", opacity: 0.05 }}
+        style={{ backgroundImage: taousBlueBg, backgroundSize: "320px 320px", opacity: 0.07 }}
       />
-      <MoroccanDivider color="var(--amber)" opacity={0.18} className="mb-8 max-w-md mx-auto" />
-      <div className="container mx-auto px-6 max-w-7xl flex flex-wrap items-center justify-between gap-4 text-sm">
+      {/* Corner peacock feathers */}
+      <TaousFeather className="absolute -right-4 top-2 w-24 h-60 hidden md:block" opacity={0.18} />
+      <TaousFeather className="absolute -left-4 top-2 w-24 h-60 hidden md:block -scale-x-100" opacity={0.18} />
+
+      <MoroccanDivider color={TAOUS_GOLD} opacity={0.55} className="mb-8 max-w-md mx-auto" />
+      <div className="container mx-auto px-6 max-w-7xl flex flex-wrap items-center justify-between gap-4 text-sm relative z-10">
         <div className="font-display text-2xl text-[var(--cream)]">
           aqcha<span className="text-[var(--amber)]">.</span>
         </div>
@@ -1175,6 +1253,18 @@ function Footer() {
           <a href="#" className="hover:text-[var(--amber)] transition">LinkedIn</a>
         </div>
       </div>
+
+      {/* Bordure Taous — repeating tile border at bottom */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 inset-x-0 h-7"
+        style={{ backgroundImage: taousBorderBg, backgroundSize: "60px 28px", backgroundRepeat: "repeat-x", opacity: 0.85 }}
+      />
+      <div
+        aria-hidden
+        className="absolute bottom-7 inset-x-0 h-px"
+        style={{ background: TAOUS_GOLD, opacity: 0.5 }}
+      />
     </footer>
   );
 }
