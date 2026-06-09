@@ -974,6 +974,9 @@ function Impact() {
             <span className="text-xs text-[var(--cream)]/50 hidden md:block">{t.impact.since}</span>
           </div>
 
+          <MoroccanDivider color="var(--amber)" opacity={0.22} className="mb-10" />
+
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {values.map((m, i) => (
               <div key={i}>
