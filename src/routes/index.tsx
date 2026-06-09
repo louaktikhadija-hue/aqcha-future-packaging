@@ -881,6 +881,11 @@ function Products() {
       {/* Plume de Taous corner accents */}
       <TaousFeather className="absolute top-10 -right-2 w-28 h-72 hidden lg:block" opacity={0.14} />
       <TaousFeather className="absolute bottom-10 -left-2 w-28 h-72 hidden lg:block -scale-x-100" opacity={0.14} />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--cream)] to-transparent pointer-events-none"
+      />
+
 
 
       <div className="relative container mx-auto px-6 max-w-7xl">
