@@ -1146,7 +1146,23 @@ function Contact() {
 function Footer() {
   const { t } = useT();
   return (
-    <footer className="bg-[var(--forest-deep)] text-[var(--cream)]/70 py-12">
+    <footer className="relative bg-[var(--forest-deep)] text-[var(--cream)]/70 py-12 overflow-hidden">
+      {/* Refined Moroccan-inspired top border */}
+      <div
+        aria-hidden
+        className="absolute top-0 inset-x-0 h-1.5"
+        style={{
+          background:
+            "repeating-linear-gradient(90deg, var(--amber) 0 10px, var(--forest) 10px 20px, #C75B3C 20px 30px)",
+          opacity: 0.55,
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: zelligeBg, backgroundSize: "60px 60px", opacity: 0.05 }}
+      />
+      <MoroccanDivider color="var(--amber)" opacity={0.18} className="mb-8 max-w-md mx-auto" />
       <div className="container mx-auto px-6 max-w-7xl flex flex-wrap items-center justify-between gap-4 text-sm">
         <div className="font-display text-2xl text-[var(--cream)]">
           aqcha<span className="text-[var(--amber)]">.</span>
