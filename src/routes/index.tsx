@@ -499,10 +499,14 @@ function Hero() {
 
       <div className="absolute top-1/4 right-[10%] w-72 h-72 rounded-full bg-[var(--amber)]/20 blur-3xl animate-float-slow pointer-events-none" />
 
-      <motion.div
-        style={{ opacity }}
-        className="relative h-full container mx-auto px-6 flex flex-col justify-end pb-20 md:pb-28 max-w-7xl"
-      >
+      {/* Subtle Taous-inspired motif behind hero — very low opacity */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none mix-blend-screen"
+        style={{ backgroundImage: taousTileBg, backgroundSize: "320px 320px", opacity: 0.05 }}
+      />
+      <TaousCorner className="absolute top-24 right-6 w-40 h-40 hidden md:block animate-float-slow" opacity={0.14} />
+      <TaousCorner className="absolute bottom-10 left-6 w-32 h-32 hidden md:block" flip opacity={0.1} />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
