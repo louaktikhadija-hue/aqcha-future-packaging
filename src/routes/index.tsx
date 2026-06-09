@@ -872,10 +872,16 @@ function Products() {
         aria-hidden
         className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--cream)] to-transparent pointer-events-none"
       />
+      {/* Faint Tabsil Taous watermark */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[var(--cream)] to-transparent pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: taousBlueBg, backgroundSize: "400px 400px", opacity: 0.06 }}
       />
+      {/* Plume de Taous corner accents */}
+      <TaousFeather className="absolute top-10 -right-2 w-28 h-72 hidden lg:block" opacity={0.14} />
+      <TaousFeather className="absolute bottom-10 -left-2 w-28 h-72 hidden lg:block -scale-x-100" opacity={0.14} />
+
 
       <div className="relative container mx-auto px-6 max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-8 mb-16">
