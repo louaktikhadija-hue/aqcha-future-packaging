@@ -853,6 +853,8 @@ function Products() {
                 transition={{ duration: 0.7, delay: i * 0.1 }}
                 className="group relative rounded-3xl bg-white overflow-hidden flex flex-col shadow-[0_30px_60px_-30px_rgba(12,52,44,0.25)]"
               >
+                <TaousCorner className="absolute top-2 right-2 w-14 h-14 z-10" color="var(--forest-deep)" opacity={0.08} />
+                <TaousCorner className="absolute bottom-2 left-2 w-14 h-14 z-10" flip color="var(--forest-deep)" opacity={0.08} />
                 {/* zellij top stripe */}
                 <div
                   className="h-2 w-full"
