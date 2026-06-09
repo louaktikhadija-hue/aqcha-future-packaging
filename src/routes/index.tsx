@@ -1069,8 +1069,10 @@ function Contact() {
   const { t } = useT();
   const partners = ["Maroc PME", "GIZ", "UM6P", "Climate-KIC", "Impact Lab", "Bpifrance"];
   return (
-    <section id="contact" className="bg-[var(--cream)] py-28 md:py-40">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <section id="contact" className="relative bg-[var(--cream)] py-28 md:py-40 overflow-hidden">
+      <TaousCorner className="absolute top-10 right-6 w-36 h-36 hidden md:block" color="var(--forest-deep)" opacity={0.08} />
+      <TaousCorner className="absolute bottom-10 left-6 w-36 h-36 hidden md:block" flip color="var(--forest-deep)" opacity={0.08} />
+      <div className="container mx-auto px-6 max-w-7xl relative">
         <div className="grid md:grid-cols-12 gap-16">
           <div className="md:col-span-7">
             <p className="text-xs uppercase tracking-[0.3em] text-[var(--forest)] mb-6">{t.contact.kicker}</p>
