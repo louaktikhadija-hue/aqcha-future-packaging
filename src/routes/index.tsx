@@ -354,10 +354,74 @@ function LangToggle({ dark = true }: { dark?: boolean }) {
 }
 
 /* ============================================================
-   Zellige SVG pattern (Moroccan touch)
+   Moroccan motifs — Zellige + Taous (peacock-feather) inspirations
+   All decorative; rendered at 3–8% opacity unless stated
 ============================================================ */
 const zelligeBg =
   "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%230C342C' stroke-width='1' opacity='0.18'><path d='M40 0 L80 40 L40 80 L0 40 Z'/><path d='M40 14 L66 40 L40 66 L14 40 Z'/><circle cx='40' cy='40' r='8'/><path d='M0 0 L20 20 M80 0 L60 20 M0 80 L20 60 M80 80 L60 60'/></g></svg>\")";
+
+// Refined Taous-inspired tile — peacock-feather curves, abstracted
+const taousTileBg =
+  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%23FBE045' stroke-width='0.9' opacity='0.55'><circle cx='80' cy='80' r='42'/><circle cx='80' cy='80' r='24'/><circle cx='80' cy='80' r='8'/><path d='M80 12 C100 40 100 120 80 148 C60 120 60 40 80 12 Z'/><path d='M12 80 C40 60 120 60 148 80 C120 100 40 100 12 80 Z'/><path d='M32 32 C60 60 100 60 128 32 M32 128 C60 100 100 100 128 128'/></g></svg>\")";
+
+// Soft Taous corner ornament — used at section corners
+function TaousCorner({
+  className = "",
+  flip = false,
+  color = "var(--amber)",
+  opacity = 0.18,
+}: {
+  className?: string;
+  flip?: boolean;
+  color?: string;
+  opacity?: number;
+}) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 120 120"
+      className={`pointer-events-none ${className}`}
+      style={{ transform: flip ? "scaleX(-1)" : undefined, opacity }}
+    >
+      <g fill="none" stroke={color} strokeWidth="1.1" strokeLinecap="round">
+        <path d="M4 60 C 4 30, 30 4, 60 4" />
+        <path d="M14 60 C 14 36, 36 14, 60 14" />
+        <path d="M24 60 C 24 42, 42 24, 60 24" opacity="0.7" />
+        <circle cx="60" cy="60" r="4" />
+        <path d="M60 18 C 70 30, 70 50, 60 60 C 50 50, 50 30, 60 18 Z" />
+        <path d="M18 60 C 30 50, 50 50, 60 60 C 50 70, 30 70, 18 60 Z" />
+        <circle cx="60" cy="36" r="2" />
+        <circle cx="36" cy="60" r="2" />
+      </g>
+    </svg>
+  );
+}
+
+// Moroccan-inspired divider — abstract peacock-feather row
+function MoroccanDivider({
+  color = "var(--forest-deep)",
+  opacity = 0.22,
+  className = "",
+}: {
+  color?: string;
+  opacity?: number;
+  className?: string;
+}) {
+  return (
+    <div className={`flex items-center justify-center gap-3 ${className}`} aria-hidden>
+      <span className="h-px flex-1 max-w-[120px]" style={{ background: `linear-gradient(90deg, transparent, ${color})`, opacity }} />
+      <svg viewBox="0 0 80 24" className="w-24 h-6" style={{ opacity: opacity + 0.15 }}>
+        <g fill="none" stroke={color} strokeWidth="1">
+          <path d="M40 2 C 50 8, 50 16, 40 22 C 30 16, 30 8, 40 2 Z" />
+          <circle cx="40" cy="12" r="2" />
+          <path d="M10 12 C 16 6, 24 6, 30 12 C 24 18, 16 18, 10 12 Z" />
+          <path d="M70 12 C 64 6, 56 6, 50 12 C 56 18, 64 18, 70 12 Z" />
+        </g>
+      </svg>
+      <span className="h-px flex-1 max-w-[120px]" style={{ background: `linear-gradient(270deg, transparent, ${color})`, opacity }} />
+    </div>
+  );
+}
 
 /* ============================================================
    Nav
