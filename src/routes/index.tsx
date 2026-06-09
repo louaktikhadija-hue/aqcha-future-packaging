@@ -507,6 +507,11 @@ function Hero() {
       />
       <TaousCorner className="absolute top-24 right-6 w-40 h-40 hidden md:block animate-float-slow" opacity={0.14} />
       <TaousCorner className="absolute bottom-10 left-6 w-32 h-32 hidden md:block" flip opacity={0.1} />
+
+      <motion.div
+        style={{ opacity }}
+        className="relative h-full container mx-auto px-6 flex flex-col justify-end pb-20 md:pb-28 max-w-7xl"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
