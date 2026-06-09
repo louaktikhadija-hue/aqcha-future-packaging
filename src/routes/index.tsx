@@ -1212,24 +1212,25 @@ function Contact() {
 function Footer() {
   const { t } = useT();
   return (
-    <footer className="relative bg-[var(--forest-deep)] text-[var(--cream)]/70 py-12 overflow-hidden">
-      {/* Refined Moroccan-inspired top border */}
+    <footer className="relative bg-[var(--forest-deep)] text-[var(--cream)]/70 pt-12 pb-20 overflow-hidden">
+      {/* Top thin gold rail */}
       <div
         aria-hidden
-        className="absolute top-0 inset-x-0 h-1.5"
-        style={{
-          background:
-            "repeating-linear-gradient(90deg, var(--amber) 0 10px, var(--forest) 10px 20px, #C75B3C 20px 30px)",
-          opacity: 0.55,
-        }}
+        className="absolute top-0 inset-x-0 h-px"
+        style={{ background: `linear-gradient(90deg, transparent, ${TAOUS_GOLD}, transparent)`, opacity: 0.6 }}
       />
+      {/* Faint Taous watermark */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: zelligeBg, backgroundSize: "60px 60px", opacity: 0.05 }}
+        style={{ backgroundImage: taousBlueBg, backgroundSize: "320px 320px", opacity: 0.07 }}
       />
-      <MoroccanDivider color="var(--amber)" opacity={0.18} className="mb-8 max-w-md mx-auto" />
-      <div className="container mx-auto px-6 max-w-7xl flex flex-wrap items-center justify-between gap-4 text-sm">
+      {/* Corner peacock feathers */}
+      <TaousFeather className="absolute -right-4 top-2 w-24 h-60 hidden md:block" opacity={0.18} />
+      <TaousFeather className="absolute -left-4 top-2 w-24 h-60 hidden md:block -scale-x-100" opacity={0.18} />
+
+      <MoroccanDivider color={TAOUS_GOLD} opacity={0.55} className="mb-8 max-w-md mx-auto" />
+      <div className="container mx-auto px-6 max-w-7xl flex flex-wrap items-center justify-between gap-4 text-sm relative z-10">
         <div className="font-display text-2xl text-[var(--cream)]">
           aqcha<span className="text-[var(--amber)]">.</span>
         </div>
@@ -1241,6 +1242,18 @@ function Footer() {
           <a href="#" className="hover:text-[var(--amber)] transition">LinkedIn</a>
         </div>
       </div>
+
+      {/* Bordure Taous — repeating tile border at bottom */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 inset-x-0 h-7"
+        style={{ backgroundImage: taousBorderBg, backgroundSize: "60px 28px", backgroundRepeat: "repeat-x", opacity: 0.85 }}
+      />
+      <div
+        aria-hidden
+        className="absolute bottom-7 inset-x-0 h-px"
+        style={{ background: TAOUS_GOLD, opacity: 0.5 }}
+      />
     </footer>
   );
 }
